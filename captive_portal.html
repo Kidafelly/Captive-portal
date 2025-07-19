@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in to SMART-WIFI HOTSPOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 16px;
+            padding: 30px 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .welcome-text {
+            color: #ef4444;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .help-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .help-text a {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        .access-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .access-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .divider span {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tab-container {
+            display: flex;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            padding: 4px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tab.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .tab.inactive {
+            background: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .plans-container {
+            display: none;
+        }
+
+        .plans-container.active {
+            display: block;
+        }
+
+        .plan {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+        }
+
+        .plan:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .plan-info {
+            flex: 1;
+        }
+
+        .plan-duration {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 4px;
+        }
+
+        .plan-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 2px;
+        }
+
+        .plan-time {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .plan-badge {
+            background: #3b82f6;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .trial-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .buy-btn {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .buy-btn:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .start-trial-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+        }
+
+        .start-trial-btn:hover {
+            background: #2563eb;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .modal-btn.cancel {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .modal-btn.cancel:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .modal-btn.confirm {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .modal-btn.confirm:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .selected-plan {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .close-btn:hover {
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+                margin: 10px;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">SMART-BARBER</div>
+            <div class="welcome-text">Welcome to Smart-Barber</div>
+            <div class="subtitle">Select a package to get started</div>
+            <div class="help-text">Need help? Call or WhatsApp <a href="tel:0701836089">0701836089</a></div>
+        </div>
+
+        <button class="access-btn">
+            <i class="fas fa-sign-in-alt"></i>
+            ACCESS NETWORK
+        </button>
+
+        <div class="divider">
+            <span>Available Plans</span>
+        </div>
+
+        <div class="tab-container">
+            <div class="tab active" data-tab="unlimited">
+                <i class="fas fa-infinity"></i> Unlimited
+            </div>
+            <div class="tab inactive" data-tab="bundles">
+                <i class="fas fa-cube"></i> Bundles
+            </div>
+        </div>
+
+        <div class="plans-container active" id="unlimited-plans">
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-badge trial-badge">Trial</div>
+                    <div class="plan-duration">Free</div>
+                    <div class="plan-time">3 Minutes</div>
+                </div>
+                <button class="buy-btn start-trial-btn">Start Trial</button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">1 hour@10</div>
+                    <div class="plan-price">Ksh10</div>
+                    <div class="plan-time">1h</div>
+                </div>
+                <button class="buy-btn" data-plan="1 hour@10" data-price="Ksh10">Buy</button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">3hours-@25</div>
+                    <div class="plan-price">Ksh25</div>
+                    <div class="plan-time">3h</div>
+                </div>
+                <button class="buy-btn" data-plan="3hours-@25" data-price="Ksh25">Buy</button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">6hours-@40</div>
+                    <div class="plan-price">Ksh40</div>
+                    <div class="plan-time">6h</div>
+                </div>
+                <button class="buy-btn" data-plan="6hours-@40" data-price="Ksh40">Buy</button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">1 Day-@70</div>
+                    <div class="plan-price">Ksh70</div>
+                    <div class="plan-time">1d</div>
+                </div>
+                <button class="buy-btn" data-plan="1 Day-@70" data-price="Ksh70">Buy</button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">3 Days @ ksh150</div>
+                    <div class="plan-price">Ksh150</div>
+                    <div class="plan-time">3d</div>
+                </div>
+                <button class="buy-btn" data-plan="3 Days @ ksh150" data-price="Ksh150">Buy</button>
+            </div>
+        </div>
+
+        <div class="plans-container" id="bundles-plans">
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">Data Bundle 1GB</div>
+                    <div class="plan-price">Ksh50</div>
+                    <div class="plan-time">24h</div>
+                </div>
+                <button class="buy-btn" data-plan="Data Bundle 1GB" data-price="Ksh50">Buy</button>
+            </div>
+
+            <div class="plan">
+                <div class="plan-info">
+                    <div class="plan-duration">Data Bundle 3GB</div>
+                    <div class="plan-price">Ksh100</div>
+                    <div class="plan-time">7d</div>
+                </div>
+                <button class="buy-btn" data-plan="Data Bundle 3GB" data-price="Ksh100">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="purchaseModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-title">Complete Purchase</div>
+                <div class="modal-subtitle">Enter your phone number to proceed</div>
+            </div>
+
+            <div class="selected-plan" id="selectedPlan">
+                <div><strong>Selected Plan:</strong> <span id="planName"></span></div>
+                <div><strong>Price:</strong> <span id="planPrice"></span></div>
+            </div>
+
+            <form id="purchaseForm">
+                <div class="form-group">
+                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phoneNumber" 
+                        class="form-input" 
+                        placeholder="07xxxxxxxx" 
+                        required
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                    >
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="button" class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="modal-btn confirm">Confirm Purchase</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.dataset.tab;
+                
+                // Update tab active states
+                document.querySelectorAll('.tab').forEach(t => {
+                    t.classList.remove('active');
+                    t.classList.add('inactive');
+                });
+                tab.classList.add('active');
+                tab.classList.remove('inactive');
+                
+                // Show corresponding plans
+                document.querySelectorAll('.plans-container').forEach(container => {
+                    container.classList.remove('active');
+                });
+                document.getElementById(tabName + '-plans').classList.add('active');
+            });
+        });
+
+        // Modal functionality
+        function openModal(planName, planPrice) {
+            document.getElementById('planName').textContent = planName;
+            document.getElementById('planPrice').textContent = planPrice;
+            document.getElementById('purchaseModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('purchaseModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('purchaseForm').reset();
+        }
+
+        // Buy button event listeners
+        document.querySelectorAll('.buy-btn:not(.start-trial-btn)').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const planName = btn.dataset.plan;
+                const planPrice = btn.dataset.price;
+                openModal(planName, planPrice);
+            });
+        });
+
+        // Start trial button
+        document.querySelector('.start-trial-btn').addEventListener('click', () => {
+            alert('Free trial activated! You now have 3 minutes of free internet access.');
+        });
+
+        // Form submission
+        document.getElementById('purchaseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const planName = document.getElementById('planName').textContent;
+            const planPrice = document.getElementById('planPrice').textContent;
+            
+            // Basic phone number validation
+            if (phoneNumber.length !== 10 || !phoneNumber.startsWith('07')) {
+                alert('Please enter a valid phone number starting with 07');
+                return;
+            }
+            
+            // Here you would typically send the data to your payment processor
+            alert(`Purchase initiated!\n\nPlan: ${planName}\nPrice: ${planPrice}\nPhone: ${phoneNumber}\n\nYou will receive an M-Pesa prompt shortly.`);
+            
+            closeModal();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('purchaseModal').addEventListener('click', (e) => {
+            if (e.target.id === 'purchaseModal') {
+                closeModal();
+            }
+        });
+
+        // Access Network button
+        document.querySelector('.access-btn').addEventListener('click', () => {
+            alert('Please select and purchase a plan to access the network.');
+        });
+
+        // Phone number formatting
+        document.getElementById('phoneNumber').addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) {
+                value = value.substring(0, 10);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in to SMART-WIFI HOTSPOT</title>
+    <title>Connect to SMART-WIFI HOTSPOT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -13,95 +13,125 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #0d1117 0%, #161b22 35%, #1a1f36 100%);
             color: white;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 400px;
-            margin: 0 auto;
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 16px;
-            padding: 30px 25px;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 420px;
+            margin: 20px auto;
+            background: rgba(22, 27, 34, 0.85);
+            border-radius: 20px;
+            padding: 35px 28px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+            pointer-events: none;
+            z-index: -1;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #22c55e, #0ea5e9, #a855f7);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .welcome-text {
-            color: #ef4444;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            font-weight: 600;
+            color: #22c55e;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .subtitle {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            line-height: 1.4;
         }
 
         .help-text {
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            padding: 12px 16px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 10px;
+            border-left: 3px solid #22c55e;
         }
 
         .help-text a {
-            color: #3b82f6;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .help-text a:hover {
             text-decoration: underline;
         }
 
         .access-btn {
             width: 100%;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            background: linear-gradient(135deg, #22c55e, #16a34a);
             border: none;
-            padding: 15px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .access-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.4);
+            background: linear-gradient(135deg, #16a34a, #15803d);
         }
 
         .divider {
             text-align: center;
-            margin: 25px 0;
+            margin: 30px 0;
             position: relative;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .divider::before {
@@ -110,45 +140,57 @@
             top: 50%;
             left: 0;
             right: 0;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             z-index: 1;
         }
 
         .divider span {
-            background: rgba(30, 41, 59, 0.8);
-            padding: 0 15px;
+            background: rgba(22, 27, 34, 0.9);
+            padding: 0 20px;
             position: relative;
             z-index: 2;
         }
 
         .tab-container {
             display: flex;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            margin-bottom: 20px;
-            padding: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 25px;
+            padding: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .tab {
             flex: 1;
-            padding: 12px;
+            padding: 14px 12px;
             text-align: center;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 600;
             color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .tab.active {
-            background: #3b82f6;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
             color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
         }
 
         .tab.inactive {
-            background: rgba(0, 0, 0, 0.4);
-            color: rgba(255, 255, 255, 0.4);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .plans-container {
@@ -160,11 +202,11 @@
         }
 
         .plan {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -179,13 +221,14 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 4px;
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            width: 5px;
+            background: linear-gradient(135deg, #22c55e, #0ea5e9);
         }
 
         .plan:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            background: rgba(59, 130, 246, 0.05);
+            border-color: rgba(14, 165, 233, 0.4);
+            background: linear-gradient(145deg, rgba(14, 165, 233, 0.08), rgba(255, 255, 255, 0.03));
+            transform: translateX(5px);
         }
 
         .plan-info {
@@ -193,63 +236,75 @@
         }
 
         .plan-duration {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 4px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
         .plan-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #ef4444;
-            margin-bottom: 2px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #22c55e;
+            margin-bottom: 4px;
         }
 
         .plan-time {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .plan-badge {
-            background: #3b82f6;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 8px;
             display: inline-block;
         }
 
+        .plan-badge {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
         .trial-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
         }
 
         .buy-btn {
             background: transparent;
-            border: 1px solid #3b82f6;
-            color: #3b82f6;
-            padding: 8px 20px;
-            border-radius: 8px;
+            border: 2px solid #0ea5e9;
+            color: #0ea5e9;
+            padding: 10px 24px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .buy-btn:hover {
-            background: #3b82f6;
+            background: #0ea5e9;
             color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
         }
 
         .start-trial-btn {
-            background: #3b82f6;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border: 2px solid #f59e0b;
             color: white;
-            border: none;
         }
 
         .start-trial-btn:hover {
-            background: #2563eb;
+            background: linear-gradient(135deg, #d97706, #b45309);
+            border-color: #d97706;
         }
 
         /* Modal Styles */
@@ -260,8 +315,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -273,132 +328,152 @@
         }
 
         .modal-content {
-            background: rgba(30, 41, 59, 0.95);
-            border-radius: 16px;
-            padding: 30px;
-            max-width: 400px;
+            background: linear-gradient(145deg, rgba(22, 27, 34, 0.95), rgba(13, 17, 23, 0.95));
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 420px;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
         .modal-header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .modal-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #22c55e;
         }
 
         .modal-subtitle {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .form-label {
             display: block;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 8px;
-            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         .form-input {
             width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             color: white;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #3b82f6;
-            background: rgba(0, 0, 0, 0.4);
+            border-color: #0ea5e9;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
         }
 
         .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .modal-buttons {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             justify-content: flex-end;
         }
 
         .modal-btn {
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             border: none;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .modal-btn.cancel {
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .modal-btn.cancel:hover {
             background: rgba(255, 255, 255, 0.1);
             color: white;
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .modal-btn.confirm {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
             color: white;
         }
 
         .modal-btn.confirm:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+            background: linear-gradient(135deg, #0284c7, #0369a1);
         }
 
         .selected-plan {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(34, 197, 94, 0.1));
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 18px;
+            right: 18px;
             background: none;
             border: none;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
+            font-size: 1.3rem;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
 
         .close-btn:hover {
             color: white;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 25px 20px;
-                margin: 10px;
+                padding: 28px 22px;
+                margin: 15px 10px;
             }
 
             .modal-content {
-                padding: 25px 20px;
-                margin: 10px;
+                padding: 28px 22px;
+                margin: 15px 10px;
+            }
+            
+            .logo {
+                font-size: 1.9rem;
+            }
+            
+            .modal-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -406,103 +481,106 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">SMART-BARBER</div>
-            <div class="welcome-text">Welcome to Smart-Barber</div>
-            <div class="subtitle">Select a package to get started</div>
-            <div class="help-text">Need help? Call or WhatsApp <a href="tel:0701836089">0701836089</a></div>
+            <div class="logo">LOOP-BACK</div>
+            <div class="welcome-text">Welcome to Loop-Back WiFi</div>
+            <div class="subtitle">Choose your internet package and get connected instantly</div>
+            <div class="help-text">
+                <i class="fas fa-headset"></i> Need assistance? Contact us at <a href="tel:0700775553">0700775553</a>
+            </div>
         </div>
 
         <button class="access-btn">
-            <i class="fas fa-sign-in-alt"></i>
-            ACCESS NETWORK
+            <i class="fas fa-wifi"></i>
+            CONNECT NOW
         </button>
 
         <div class="divider">
-            <span>Available Plans</span>
+            <span>Choose Your Plan</span>
         </div>
 
         <div class="tab-container">
             <div class="tab active" data-tab="unlimited">
-                <i class="fas fa-infinity"></i> Unlimited
+                <i class="fas fa-clock"></i> Time Plans
             </div>
             <div class="tab inactive" data-tab="bundles">
-                <i class="fas fa-cube"></i> Bundles
+                <i class="fas fa-database"></i> Data Plans
             </div>
         </div>
 
         <div class="plans-container active" id="unlimited-plans">
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-badge trial-badge">Trial</div>
-                    <div class="plan-duration">Free</div>
-                    <div class="plan-time">3 Minutes</div>
+                    <div class="plan-badge trial-badge">Free Trial</div>
+                    <div class="plan-duration">Complimentary Access</div>
+                    <div class="plan-price">Free</div>
+                    <div class="plan-time">3 min</div>
                 </div>
-                <button class="buy-btn start-trial-btn">Start Trial</button>
+                <button class="buy-btn start-trial-btn">Activate</button>
             </div>
 
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">1 hour@10</div>
-                    <div class="plan-price">Ksh10</div>
-                    <div class="plan-time">1h</div>
+                    <div class="plan-duration">Quick Session</div>
+                    <div class="plan-price">KSh 10</div>
+                    <div class="plan-time">1 hour</div>
                 </div>
-                <button class="buy-btn" data-plan="1 hour@10" data-price="Ksh10">Buy</button>
+                <button class="buy-btn" data-plan="Quick Session (1 hour)" data-price="KSh 10">Purchase</button>
             </div>
 
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">3hours-@25</div>
-                    <div class="plan-price">Ksh25</div>
-                    <div class="plan-time">3h</div>
+                    <div class="plan-duration">Extended Session</div>
+                    <div class="plan-price">KSh 25</div>
+                    <div class="plan-time">3 hours</div>
                 </div>
-                <button class="buy-btn" data-plan="3hours-@25" data-price="Ksh25">Buy</button>
+                <button class="buy-btn" data-plan="Extended Session (3 hours)" data-price="KSh 25">Purchase</button>
             </div>
 
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">6hours-@40</div>
-                    <div class="plan-price">Ksh40</div>
-                    <div class="plan-time">6h</div>
+                    <div class="plan-duration">Half Day Access</div>
+                    <div class="plan-price">KSh 40</div>
+                    <div class="plan-time">6 hours</div>
                 </div>
-                <button class="buy-btn" data-plan="6hours-@40" data-price="Ksh40">Buy</button>
+                <button class="buy-btn" data-plan="Half Day Access (6 hours)" data-price="KSh 40">Purchase</button>
             </div>
 
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">1 Day-@70</div>
-                    <div class="plan-price">Ksh70</div>
-                    <div class="plan-time">1d</div>
+                    <div class="plan-duration">Full Day Access</div>
+                    <div class="plan-price">KSh 70</div>
+                    <div class="plan-time">24 hours</div>
                 </div>
-                <button class="buy-btn" data-plan="1 Day-@70" data-price="Ksh70">Buy</button>
+                <button class="buy-btn" data-plan="Full Day Access (24 hours)" data-price="KSh 70">Purchase</button>
             </div>
 
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">3 Days @ ksh150</div>
-                    <div class="plan-price">Ksh150</div>
-                    <div class="plan-time">3d</div>
+                    <div class="plan-duration">Weekend Package</div>
+                    <div class="plan-price">KSh 150</div>
+                    <div class="plan-time">3 days</div>
                 </div>
-                <button class="buy-btn" data-plan="3 Days @ ksh150" data-price="Ksh150">Buy</button>
+                <button class="buy-btn" data-plan="Weekend Package (3 days)" data-price="KSh 150">Purchase</button>
             </div>
         </div>
 
         <div class="plans-container" id="bundles-plans">
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">Data Bundle 1GB</div>
-                    <div class="plan-price">Ksh50</div>
-                    <div class="plan-time">24h</div>
+                    <div class="plan-duration">Starter Data Pack</div>
+                    <div class="plan-price">KSh 50</div>
+                    <div class="plan-time">1GB / 24h</div>
                 </div>
-                <button class="buy-btn" data-plan="Data Bundle 1GB" data-price="Ksh50">Buy</button>
+                <button class="buy-btn" data-plan="Starter Data Pack (1GB)" data-price="KSh 50">Purchase</button>
             </div>
 
             <div class="plan">
                 <div class="plan-info">
-                    <div class="plan-duration">Data Bundle 3GB</div>
-                    <div class="plan-price">Ksh100</div>
-                    <div class="plan-time">7d</div>
+                    <div class="plan-duration">Premium Data Pack</div>
+                    <div class="plan-price">KSh 100</div>
+                    <div class="plan-time">3GB / 7 days</div>
                 </div>
-                <button class="buy-btn" data-plan="Data Bundle 3GB" data-price="Ksh100">Buy</button>
+                <button class="buy-btn" data-plan="Premium Data Pack (3GB)" data-price="KSh 100">Purchase</button>
             </div>
         </div>
     </div>
@@ -512,18 +590,20 @@
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
             <div class="modal-header">
-                <div class="modal-title">Complete Purchase</div>
-                <div class="modal-subtitle">Enter your phone number to proceed</div>
+                <div class="modal-title">Complete Your Purchase</div>
+                <div class="modal-subtitle">Enter your mobile number for M-Pesa payment</div>
             </div>
 
             <div class="selected-plan" id="selectedPlan">
-                <div><strong>Selected Plan:</strong> <span id="planName"></span></div>
-                <div><strong>Price:</strong> <span id="planPrice"></span></div>
+                <div><strong>Selected Package:</strong> <span id="planName"></span></div>
+                <div><strong>Amount:</strong> <span id="planPrice"></span></div>
             </div>
 
             <form id="purchaseForm">
                 <div class="form-group">
-                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                    <label class="form-label" for="phoneNumber">
+                        <i class="fas fa-mobile-alt"></i> Mobile Number
+                    </label>
                     <input 
                         type="tel" 
                         id="phoneNumber" 
@@ -537,7 +617,7 @@
 
                 <div class="modal-buttons">
                     <button type="button" class="modal-btn cancel" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="modal-btn confirm">Confirm Purchase</button>
+                    <button type="submit" class="modal-btn confirm">Pay Now</button>
                 </div>
             </form>
         </div>
@@ -590,7 +670,7 @@
 
         // Start trial button
         document.querySelector('.start-trial-btn').addEventListener('click', () => {
-            alert('Free trial activated! You now have 3 minutes of free internet access.');
+            alert('🎉 Free trial activated successfully! You now have 3 minutes of complimentary internet access. Enjoy browsing!');
         });
 
         // Form submission
@@ -603,12 +683,12 @@
             
             // Basic phone number validation
             if (phoneNumber.length !== 10 || !phoneNumber.startsWith('07')) {
-                alert('Please enter a valid phone number starting with 07');
+                alert('⚠️ Please enter a valid Kenyan mobile number starting with 07');
                 return;
             }
             
             // Here you would typically send the data to your payment processor
-            alert(`Purchase initiated!\n\nPlan: ${planName}\nPrice: ${planPrice}\nPhone: ${phoneNumber}\n\nYou will receive an M-Pesa prompt shortly.`);
+            alert(`💳 Payment Request Initiated!\n\n📦 Package: ${planName}\n💰 Amount: ${planPrice}\n📱 Number: ${phoneNumber}\n\n⏳ Please check your phone for the M-Pesa payment prompt and complete the transaction.`);
             
             closeModal();
         });
@@ -622,7 +702,7 @@
 
         // Access Network button
         document.querySelector('.access-btn').addEventListener('click', () => {
-            alert('Please select and purchase a plan to access the network.');
+            alert('🔒 Please select and purchase a package to access our WiFi network.');
         });
 
         // Phone number formatting
@@ -632,6 +712,17 @@
                 value = value.substring(0, 10);
             }
             e.target.value = value;
+        });
+
+        // Add some visual feedback for interactions
+        document.querySelectorAll('.plan').forEach(plan => {
+            plan.addEventListener('mouseenter', () => {
+                plan.style.boxShadow = '0 10px 30px rgba(14, 165, 233, 0.2)';
+            });
+            
+            plan.addEventListener('mouseleave', () => {
+                plan.style.boxShadow = 'none';
+            });
         });
     </script>
 </body>
